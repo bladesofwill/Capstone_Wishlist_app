@@ -233,6 +233,7 @@
     <Compile Include="Models\Child.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ItemStatus.cs" />
     <Compile Include="Models\WishItem.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

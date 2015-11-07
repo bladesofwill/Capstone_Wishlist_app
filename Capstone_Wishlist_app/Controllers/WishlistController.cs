@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Capstone_Wishlist_app.Models;
+using Capstone_Wishlist_app.DAL;
 
 namespace Capstone_Wishlist_app.Controllers
 {
@@ -14,8 +16,21 @@ namespace Capstone_Wishlist_app.Controllers
             return View();
         }
 
-        /**
-         * Removed some SQL based methods
+        //Searches for wishlists using child id as an input
+        //It *should* return null if no wishlist is found
+        public Wishlist getWishlist(int childID)
+        {
+            using (var context = new WishlistContext())
+            {
+                var wishlistQuery = from wl in context.WishLists
+                                    where wl.Child_Id == childID
+                                    select wl;
+
+                var result = wishlistQuery.FirstOrDefault();
+
+                return result;
+            }   
+        }
          
         //This method should update the status of a wishlist
         //The wishlist's status is the status of the least complete WishItem
@@ -40,22 +55,21 @@ namespace Capstone_Wishlist_app.Controllers
             switch (n)
             {
                 case 1:
-                    wl.Status = "Unapproved";
+                    wl.Status = ItemStatus.Unapproved;
                     break;
                 case 2:
-                    wl.Status = "Avaliable";
+                    wl.Status = ItemStatus.Avaliable;
                     break;
                 case 3:
-                    wl.Status = "Ordered";
+                    wl.Status = ItemStatus.Ordered;
                     break;
                 case 4:
-                    wl.Status = "Shipping";
+                    wl.Status = ItemStatus.Shipping;
                     break;
                 case 5:
-                    wl.Status = "Delivered";
+                    wl.Status = ItemStatus.Delivered;
                     break;
             }
-        } 
-         */
+        }
     }
 }

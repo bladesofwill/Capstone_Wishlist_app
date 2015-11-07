@@ -23,8 +23,6 @@ namespace Capstone_Wishlist_app.Models
 
         public virtual ICollection<Wishlist> Wishlists { get; set; }
 
-        //The possible order statuses for all items
-        public enum ItemStatus { Unapproved, Avaliable, Ordered, Shipping, Delivered };
         //The order status of the item
         public ItemStatus Status { get; set; }
     }
